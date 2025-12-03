@@ -1,8 +1,9 @@
-# Log Management
+#!/usr/bin/env bash
+# log_cleanup_devops.sh
+# Usage: sudo ./log_cleanup_devops.sh [days]
+set -euo pipefail
 
-View logs:
-- tail -f /var/log/syslog  (Debian/Ubuntu)
-- tail -f /var/log/messages (RHEL/Amazon Linux)
-- journalctl -u <service> -f
-
-Use logrotate for automated rotation (see Level 3).
+DAYS="${1:-7}"
+echo "[INFO] Deleting log files older than $DAYS days in /var/log (will print then delete)."
+sudo find /var/log -type f -mtime +"$DAYS" -print -exec sudo rm -f {} \;
+echo "[DONE] Old logs removed."
