@@ -31,4 +31,4 @@ sudo logrotate -d /etc/logrotate.conf || true
 echo
 echo "If you want to force-rotate now (will rotate), run:"
 echo "  sudo logrotate -f /etc/logrotate.conf"
-..
+
